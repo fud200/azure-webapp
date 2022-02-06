@@ -31,13 +31,13 @@ jobs:
      
     - name: Build and push container image to registry 
       run: |
-        docker build . -t mlopshb.azurecr.io/mlops-cd:${{ github.sha }}
-        docker push mlopshb.azurecr.io/mlops-cd:${{ github.sha }}
+        docker build . -t mlopshb.azurecr.io/mlops-hb:${{ github.sha }}
+        docker push mlopshb.azurecr.io/mlops-hb:${{ github.sha }}
         
         
     - name: Deploy to App Service
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'mlops-hb'
-        images: 'mlopshb.azurecr.io/mlops-cd:${{ github.sha }}'
+        images: 'mlopshb.azurecr.io/mlops-hb:${{ github.sha }}'
         slot-name: 'staging'
